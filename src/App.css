@@ -1,0 +1,280 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: linear-gradient(
+    90deg,
+    #eef8f6 0%,
+    #f7f7f7 50%,
+    #eef1ff 100%
+  );
+}
+
+.login-card {
+  width: 420px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.logo h1 {
+  color: #16254f;
+  font-size: 45px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #777;
+  font-size: 13px;
+}
+
+.input-group input {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 0 15px;
+  outline: none;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-row a {
+  text-decoration: none;
+  color: #0ca36d;
+  font-size: 12px;
+}
+
+.login-btn {
+  width: 100%;
+  height: 50px;
+  background: #0ca36d;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  color: #999;
+  font-size: 12px;
+}.text-block {
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.back-link {
+  font-size: 13px;
+  color: #0ca36d;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #16254f;
+}
+
+.subtitle-text {
+  text-align: left;
+  color: #888;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #eef8f6, #f7f7f7, #eef1ff);
+}
+
+.login-card {
+  width: 420px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 25px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.logo h1 {
+  color: #16254f;
+  font-size: 40px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* OTP TEXT */
+.otp-text {
+  font-size: 12px;
+  color: #888;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* OTP BOXES */
+.otp-boxes {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.otp-boxes input {
+  width: 55px;
+  height: 55px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.otp-boxes input:focus {
+  border: 2px solid #0ca36d;
+}
+
+/* RESEND */
+.resend-text {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  margin-top: 15px;
+}
+
+.resend-text span {
+  color: #0ca36d;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* SMS TEXT */
+.sms-text {
+  text-align: center;
+  font-size: 11px;
+  color: #aaa;
+  margin-bottom: 10px;
+}
+
+/* BUTTON */
+.login-btn {
+  width: 100%;
+  height: 48px;
+  background: #0ca36d;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.login-btn:hover {
+  background: #0b8f5f;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  color: #999;
+  font-size: 12px;
+}
+.success-text {
+  text-align: center;
+  color: #0ca36d;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.check-circle {
+  width: 80px;
+  height: 80px;
+  margin: 10px auto;
+  background: #0ca36d;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.success-title {
+  text-align: center;
+  color: #16254f;
+  margin-top: 10px;
+}
+
+.success-message {
+  text-align: center;
+  color: #888;
+  font-size: 13px;
+  margin: 15px 0;
+}
+
+.back-btn {
+  width: 100%;
+  height: 45px;
+  background: #0ca36d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
