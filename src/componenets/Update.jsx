@@ -1,11 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "../App.css";
 
-function Update() {
-    const navigate = useNavigate()
-    function handleclick(){
-        navigate ("/")
-    }
+function UpdatePassword() {
+  const navigate = useNavigate();
+
+  const goToLogin = () => {
+    navigate("/");
+  };
+
   return (
     <div className="container">
       <div className="login-card">
@@ -15,18 +17,21 @@ function Update() {
         </div>
 
         <p className="success-text">Successfully</p>
+
         <div className="check-circle">
           ✔
         </div>
 
-        <h3 className="success-title">PASSWORD UPDATED</h3>
+        <h3 className="success-title">
+          PASSWORD UPDATED
+        </h3>
 
         <p className="success-message">
           Your password has been changed successfully. <br />
           You can now login with your new password.
         </p>
 
-        <button onClick={handleclick} className="back-btn">
+        <button className="back-btn" onClick={goToLogin}>
           Back to Login
         </button>
 
@@ -39,4 +44,4 @@ function Update() {
   );
 }
 
-export default Update;
+export default UpdatePassword;
