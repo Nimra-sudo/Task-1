@@ -12,7 +12,7 @@ function Login() {
   const handleLogin = () => {
     if (username === "admin" && password === "pass123") {
       setError("");
-      navigate("/otp");
+      navigate("/dashboard");
     } else {
       setError("Invalid username or password");
     }
