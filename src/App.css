@@ -830,3 +830,169 @@ body {
   background: #d1d9e0;
   border-radius: 4px;
 }
+
+@media (max-width: 1024px) 
+{
+  .stat-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts-row
+   {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .analytics-header-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 768px) {
+
+  .app-layout {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e8ecf0;
+    padding: 15px;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 0;
+    gap: 8px;
+  }
+
+  .sidebar-nav::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .sidebar-footer {
+    display: none;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .topbar-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .analytics-header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .analytics-header-actions button,
+  .analytics-header-actions select {
+    width: 100%;
+  }
+
+  .stat-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-card,
+  .stat-card,
+  .bookings-card {
+    padding: 15px;
+  }
+
+  .bookings-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bookings-filters {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .search-input,
+  .filter-select,
+  .export-btn {
+    width: 100%;
+  }
+
+
+  .bookings-card {
+    overflow-x: auto;
+  }
+
+  .bookings-table {
+    min-width: 1000px;
+  }
+
+  .topbar h1 {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 14px;
+  }
+
+  .stat-value {
+    font-size: 22px;
+  }
+}
+@media (max-width: 480px) {
+
+  .main-content {
+    padding: 10px;
+  }
+
+  .sidebar-logo {
+    font-size: 18px;
+    padding: 0 0 15px;
+  }
+
+  .stat-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .stat-icon {
+    margin-bottom: 10px;
+  }
+
+  .chart-card {
+    padding: 12px;
+  }
+
+  .bookings-card {
+    padding: 12px;
+  }
+
+  .topbar-actions {
+    gap: 8px;
+  }
+}
