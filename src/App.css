@@ -1,16 +1,19 @@
-* {
-  margin: 0;
+*
+ {
+    margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.container {
+.container 
+{
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  background: linear-gradient(
+  background: linear-gradient
+  (
     90deg,
     #eef8f6 0%,
     #f7f7f7 50%,
@@ -18,7 +21,8 @@
   );
 }
 
-.login-card {
+.login-card
+ {
   width: 420px;
   background: #fff;
   padding: 40px;
@@ -26,12 +30,14 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
-.logo {
+.logo
+ {
   text-align: center;
   margin-bottom: 10px;
 }
 
-.logo h1 {
+.logo h1
+ {
   color: #16254f;
   font-size: 45px;
 }
@@ -701,8 +707,12 @@ body {
   border-bottom: 1px solid #e8ecf0;
 }
 
-.bookings-table th:first-child { border-radius: 8px 0 0 8px; }
-.bookings-table th:last-child  { border-radius: 0 8px 8px 0; }
+.bookings-table th:first-child { 
+  border-radius: 8px 0 0 8px; 
+}
+.bookings-table th:last-child  {
+   border-radius: 0 8px 8px 0; 
+  }
 
 .bookings-table td {
   padding: 12px 12px;
@@ -948,11 +958,13 @@ body {
     overflow-x: auto;
   }
 
-  .bookings-table {
+  .bookings-table 
+  {
     min-width: 1000px;
   }
 
-  .topbar h1 {
+  .topbar h1 
+  {
     font-size: 18px;
   }
 
@@ -964,9 +976,11 @@ body {
     font-size: 22px;
   }
 }
-@media (max-width: 480px) {
+@media (max-width: 480px) 
+{
 
-  .main-content {
+  .main-content 
+  {
     padding: 10px;
   }
 
@@ -975,12 +989,14 @@ body {
     padding: 0 0 15px;
   }
 
-  .stat-card {
+  .stat-card
+   {
     flex-direction: column;
     text-align: center;
   }
 
-  .stat-icon {
+  .stat-icon 
+  {
     margin-bottom: 10px;
   }
 
@@ -995,4 +1011,15 @@ body {
   .topbar-actions {
     gap: 8px;
   }
+}
+.password-wrapper {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

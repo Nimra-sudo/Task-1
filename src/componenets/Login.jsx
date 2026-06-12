@@ -1,6 +1,7 @@
 import "../App.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 function Login() {
   const navigate = useNavigate();
@@ -8,6 +9,7 @@ function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
     if (username === "admin" && password === "pass123") {
@@ -47,11 +49,22 @@ function Login() {
             </a>
           </div>
 
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}/>
+         <div className="password-wrapper">
+  <input
+    type={showPassword ? "text" : "password"}
+    placeholder="Enter password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+  />
+
+  <span
+    className="eye-icon"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+  </span>
+</div>
+
         </div>
         {error && (
           <p style={{ color: "red", marginTop: "10px" }}>
