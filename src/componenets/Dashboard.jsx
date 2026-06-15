@@ -11,22 +11,55 @@ import { BiSolidNavigation } from "react-icons/bi";
 import { CiSettings } from "react-icons/ci";
 
 const statCards = [
-  { icon: <FaBus />, iconClass: "blue",   value: 32,      label: "Total Buses",    change: "+4 this month",  changeType: "up"   },
-  { icon: <BiSolidNavigation />, iconClass: "green",  value: 156,     label: "Active Trips",   change: "+12 this week",  changeType: "up"   },
-  { icon: <FaUserGroup/>,  iconClass: "orange", value: "1,240", label: "Booking Rating", change: "-3 this week",   changeType: "down" },
+
+  { icon: <FaBus />, 
+    iconClass: "blue", 
+      value: 32,      label: "Total Buses", 
+         change: "+4 this month", 
+          changeType: "up"   },
+  { icon: <BiSolidNavigation />,
+     iconClass: "green",
+       value: 156,   
+         label: "Active Trips",  
+          change: "+12 this week", 
+           changeType: "up"  
+           },
+  { icon: <FaUserGroup/>, 
+     iconClass: "orange", 
+     value: "1,240",
+      label: "Booking Rating", 
+      change: "-3 this week",  
+       changeType: "down" },
 ];
 const trendData  = [12, 18, 14, 22, 19, 30, 28, 35, 32, 40, 38, 45, 42, 50];
+
 const revenueData = [3200, 4100, 2800, 5500, 4800, 6200, 5700, 7100, 6600, 8000];
 
-const bookings = [
-  { id:"BK-1001", passenger:"John Doe",     passId:"AD-1234", bus:"Bus Name", busId:"AD-1134", route:"To: Okearia → Yaramki", date:"Oct 8, 2026",  seats:"W11, W12 / W41, B42", amount:"₦24,500", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
-  { id:"BK-1002", passenger:"Jane Smith",   passId:"AD-2201", bus:"Bus Name", busId:"AD-1135", route:"To: Okearia → Yaramki", date:"Oct 8, 2026",  seats:"W11, W12 / W41, B42", amount:"₦18,000", fee:"₦3,000", status:"pending",   payment:"Mobile Money" },
-  { id:"BK-1003", passenger:"Mike Johnson", passId:"AD-3312", bus:"Bus Name", busId:"AD-1136", route:"To: Okearia → Yaramki", date:"Oct 9, 2026",  seats:"W11, W12 / W21, W22", amount:"₦22,000", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
-  { id:"BK-1004", passenger:"Sarah Brown",  passId:"AD-4423", bus:"Bus Name", busId:"AD-1137", route:"To: Okearia → Yaramki", date:"Oct 9, 2026",  seats:"W11, W12 / B41, B42", amount:"₦16,500", fee:"₦3,000", status:"cancelled", payment:"Card"         },
-  { id:"BK-1005", passenger:"Chris Evans",  passId:"AD-5534", bus:"Bus Name", busId:"AD-1138", route:"To: Okearia → Yaramki", date:"Oct 10, 2026", seats:"W21, W22 / B41, B42", amount:"₦28,000", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
-  { id:"BK-1006", passenger:"Emily Clark",  passId:"AD-6645", bus:"Bus Name", busId:"AD-1139", route:"To: Okearia → Yaramki", date:"Oct 10, 2026", seats:"W11, W12 / W41, B42", amount:"₦21,000", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
-  { id:"BK-1007", passenger:"Ryan Doe",     passId:"AD-7756", bus:"Bus Name", busId:"AD-1140", route:"To: Okearia → Yaramki", date:"Oct 11, 2026", seats:"B11, B12 / B41, B42", amount:"₦19,500", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
-  { id:"BK-1008", passenger:"Linda White",  passId:"AD-8867", bus:"Bus Name", busId:"AD-1141", route:"To: Okearia → Yaramki", date:"Oct 11, 2026", seats:"W11, W12 / W41, B42", amount:"₦24,000", fee:"₦5,000", status:"pending",   payment:"Mobile Money" },
+const bookings =
+ [
+  { id:"BK-1001", passenger:"John Doe",     passId:"AD-1234",
+     bus:"Bus Name", busId:"AD-1134", route:"To: Okearia → Yaramki",
+      date:"Oct 8, 2026",  seats:"W11, W12 / W41, B42", amount:"₦24,500",
+       fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
+  { id:"BK-1002", passenger:"Jane Smith",   passId:"AD-2201",
+     bus:"Bus Name", busId:"AD-1135", route:"To: Okearia → Yaramki", date:"Oct 8, 2026",  seats:"W11, W12 / W41, B42", amount:"₦18,000", fee:"₦3,000", status:"pending",   payment:"Mobile Money" },
+  { id:"BK-1003", passenger:"Mike Johnson", passId:"AD-3312",
+     bus:"Bus Name", busId:"AD-1136", route:"To: Okearia → Yaramki", date:"Oct 9, 2026",  seats:"W11, W12 / W21, W22", amount:"₦22,000", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
+  { id:"BK-1004", passenger:"Sarah Brown",  passId:"AD-4423",
+     bus:"Bus Name", busId:"AD-1137", route:"To: Okearia → Yaramki", date:"Oct 9, 2026",  seats:"W11, W12 / B41, B42", amount:"₦16,500", fee:"₦3,000", status:"cancelled", payment:"Card"         },
+  { id:"BK-1005", passenger:"Chris Evans",  passId:"AD-5534",
+     bus:"Bus Name", busId:"AD-1138", route:"To: Okearia → Yaramki", date:"Oct 10, 2026", seats:"W21, W22 / B41, B42", amount:"₦28,000", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
+  { id:"BK-1006", passenger:"Emily Clark",  passId:"AD-6645",
+     bus:"Bus Name", busId:"AD-1139", route:"To: Okearia → Yaramki",
+      date:"Oct 10, 2026", seats:"W11, W12 / W41, B42", amount:"₦21,000",
+       fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
+  { id:"BK-1007", passenger:"Ryan Doe",     passId:"AD-7756",
+     bus:"Bus Name", busId:"AD-1140", route:"To: Okearia → Yaramki",
+      date:"Oct 11, 2026", seats:"B11, B12 / B41, B42", amount:"₦19,500", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
+  { id:"BK-1008", passenger:"Linda White",  passId:"AD-8867",
+     bus:"Bus Name", busId:"AD-1141", route:"To: Okearia → Yaramki",
+      date:"Oct 11, 2026", seats:"W11, W12 / W41, B42", amount:"₦24,000",
+       fee:"₦5,000", status:"pending",   payment:"Mobile Money" },
 ];
 
 const navItems = [
@@ -92,7 +125,8 @@ function BookingTrendChart() {
   );
 }
 
-function RevenueBarChart() {
+function RevenueBarChart() 
+{
   const width = 340,
    height = 120,
     padLeft = 30,
@@ -105,7 +139,8 @@ function RevenueBarChart() {
   const barSpacing = chartWidth / barCount;
   const barWidth   = barSpacing * 0.55;
 
-  const dayLabels = ["Oct 1",
+  const dayLabels = 
+  ["Oct 1",
     "Oct 2",
     "Oct 3",
     "Oct 4",
@@ -116,26 +151,35 @@ function RevenueBarChart() {
     "Oct 9",
     "Oct 10"];
 
-  return (
+  return 
+  (
     <svg width="100%" viewBox={`0 0 ${width} ${height}`}>
-      {revenueData.map((val, i) => {
+      {revenueData.map((val, i) =>
+       {
         const barHeight = (val / maxVal) * chartHeight;
         const x = padLeft + i * barSpacing + (barSpacing - barWidth) / 2;
         const y = 10 + chartHeight - barHeight;
         return <rect key={i} x={x} y={y} width={barWidth} 
         height={barHeight}
          fill="#1a7f5a" opacity={0.7 + (val / maxVal) * 0.3} rx={3} />;
-      })}
-      {dayLabels.map((label, i) => {
+      }
+      )
+      }
+      {dayLabels.map((label, i) => 
+      {
         if (i % 2 !== 0) return null;
         const x = padLeft + i * barSpacing + barSpacing / 2;
         return <text key={i} x={x} y={height - 4} textAnchor="middle" className="chart-axis-label">{label}</text>;
-      })}
+      }
+      )
+      }
     </svg>
   );
 }
-function StatusTag({ status }) {
-  return (
+function StatusTag({ status })
+ {
+  return 
+  (
     <span className={`status-tag ${status}`}>
       <span className="status-dot-small" />
       {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -143,7 +187,8 @@ function StatusTag({ status }) {
   );
 }
 
-export default function Dashboard() {
+export default function Dashboard() 
+{
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [activeNav, setActiveNav]     = useState("Home");
@@ -153,9 +198,11 @@ export default function Dashboard() {
      b.passenger.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = statusFilter === "All" || b.status === statusFilter.toLowerCase();
     return matchesSearch && matchesStatus;
-  });
+  }
+);
 
-  return (
+  return 
+  (
     <div className="app-layout">
       <aside className="sidebar">
         <div className="sidebar-logo">
@@ -171,7 +218,10 @@ export default function Dashboard() {
               <span className="nav-icon">{item.icon}</span>
               {item.label}
             </div>
-          ))}
+          )
+          )
+          }
+
         </nav>
 
         <div className="sidebar-footer">
@@ -215,7 +265,9 @@ export default function Dashboard() {
           </div>
 
           <div className="stat-cards">
-            {statCards.map((card) => (
+            {
+            statCards.map((card) => 
+              (
               <div className="stat-card" key={card.label}>
                 <div className={`stat-icon ${card.iconClass}`}>{card.icon}</div>
                 <div>
@@ -224,7 +276,10 @@ export default function Dashboard() {
                   <div className={`stat-change ${card.changeType}`}>{card.change}</div>
                 </div>
               </div>
-            ))}
+            )
+            )
+            }
+
           </div>
         </section>
         <div className="charts-row">
@@ -267,6 +322,7 @@ export default function Dashboard() {
             </div>
           </div>
 
+          <div className="bookings-table-wrapper">
           <table className="bookings-table">
             <thead>
               <tr>
@@ -282,41 +338,70 @@ export default function Dashboard() {
               </tr>
             </thead>
             <tbody>
-              {filteredBookings.map((booking) => (
+              {filteredBookings.map((booking) =>
+               (
                 <tr key={booking.id}>
-                  <td><div className="booking-id">ID: {booking.id}</div></td>
+
+                  <td><div className="booking-id">ID: {booking.id}</div>
+                  
+                  
+                  
+                  
+                  </td>
                   <td>
+                    
                     <div className="passenger-name">{booking.passenger}</div>
+                    
                     <div className="passenger-id">{booking.passId}</div>
                   </td>
                   <td>
+
                     <div className="bus-name">{booking.bus}</div>
                     <div className="route-info">{booking.busId}</div>
                   </td>
                   <td>
+
                     <div>{booking.route}</div>
                     <div className="route-info"> {booking.date}</div>
                   </td>
-                  <td><div className="seats-info">{booking.seats}</div></td>
+                  
                   <td>
-                    <div className="amount-value">{booking.amount}</div>
+                    <div className="seats-info">{booking.seats}</div>
+                    </td>
+                  <td>
+                    <div className="amount-value">{booking.amount}
+
+                    </div>
                     <div className="amount-fee">{booking.fee}</div>
                   </td>
-                  <td><StatusTag status={booking.status} /></td>
-                  <td><div className="payment-method">{booking.payment}</div></td>
-                  <td><button className="action-btn">⋮</button></td>
+                  <td>
+                    <StatusTag status={booking.status} />
+                    </td>
+                  <td>
+                    <div className="payment-method">{booking.payment}</div>
+                    </td>
+                  <td>
+                    <button className="action-btn">⋮</button></td>
                 </tr>
-              ))}
+              )
+              )
+              }
 
-              {filteredBookings.length === 0 && (
+
+              {filteredBookings.length === 0 &&
+               (
                 <tr>
                   <td colSpan={9} style={{ textAlign: "center", padding: "30px", color: "#aaa" }}>
                     No bookings match your search.
                   </td>
                 </tr>
-              )}
+              )
+              
+              
+              }
             </tbody>
           </table>
+          </div>
         </div>
 
       </main>

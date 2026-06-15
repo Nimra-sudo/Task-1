@@ -541,9 +541,12 @@ body {
   flex-shrink: 0;
 }
 
-.stat-icon.blue   { background: #e8f0fe; }
-.stat-icon.green  { background: #e6f7f0; }
-.stat-icon.orange { background: #fff3e0; }
+.stat-icon.blue   { 
+  background: #e8f0fe; }
+.stat-icon.green  { 
+  background: #e6f7f0; }
+.stat-icon.orange { 
+  background: #fff3e0; }
 
 .stat-value {
   font-size: 26px;
@@ -564,8 +567,12 @@ body {
   margin-top: 4px;
 }
 
-.stat-change.up   { color: #1a7f5a; }
-.stat-change.down { color: #e74c3c; }
+.stat-change.up   {
+   color: #1a7f5a; 
+  }
+.stat-change.down { 
+  color: #e74c3c; 
+}
 
 .charts-row {
   display: grid;
@@ -707,40 +714,48 @@ body {
   border-bottom: 1px solid #e8ecf0;
 }
 
-.bookings-table th:first-child { 
+.bookings-table th:first-child 
+{ 
   border-radius: 8px 0 0 8px; 
 }
-.bookings-table th:last-child  {
+.bookings-table th:last-child  
+{
    border-radius: 0 8px 8px 0; 
   }
 
-.bookings-table td {
+.bookings-table td
+ {
   padding: 12px 12px;
   border-bottom: 1px solid #f0f4f8;
   vertical-align: middle;
   color: #444;
 }
 
-.bookings-table tr:last-child td {
+.bookings-table tr:last-child td
+ {
   border-bottom: none;
 }
 
-.bookings-table tr:hover td {
+.bookings-table tr:hover td 
+{
   background: #f9fbfd;
 }
 
-.booking-id {
+.booking-id 
+{
   font-weight: 700;
   color: #1a1a2e;
   font-size: 12px;
 }
 
-.passenger-name {
+.passenger-name
+ {
   font-weight: 600;
   color: #333;
 }
 
-.passenger-id {
+.passenger-id 
+{
   font-size: 11px;
   color: #aaa;
 }
@@ -750,28 +765,33 @@ body {
   color: #333;
 }
 
-.route-info {
+.route-info
+ {
   font-size: 11px;
   color: #aaa;
   margin-top: 2px;
 }
 
-.seats-info {
+.seats-info 
+{
   font-size: 12px;
   color: #555;
 }
 
-.amount-value {
+.amount-value
+ {
   font-weight: 700;
   color: #1a1a2e;
 }
 
-.amount-fee {
+.amount-fee 
+{
   font-size: 11px;
   color: #aaa;
 }
 
-.status-tag {
+.status-tag 
+{
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -835,6 +855,11 @@ body {
 .main-content::-webkit-scrollbar-track {
   background: transparent;
 }
+
+
+
+
+
 
 .main-content::-webkit-scrollbar-thumb {
   background: #d1d9e0;
@@ -912,19 +937,51 @@ body {
     flex-wrap: wrap;
   }
 
-  .analytics-header-actions {
+
+  .analytics-header-actions
+   {
     width: 100%;
-    flex-direction: column;
-    align-items: stretch;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
   }
 
-  .analytics-header-actions button,
-  .analytics-header-actions select {
+  .analytics-header-actions .btn-primary,
+  .analytics-header-actions .btn-secondary {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .analytics-header-actions .filter-select {
     width: 100%;
   }
 
   .stat-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .stat-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .stat-value {
+    font-size: 18px;
+  }
+
+  .stat-label {
+    font-size: 10px;
+  }
+
+  .stat-change {
+    font-size: 9px;
   }
 
   .charts-row {
@@ -932,14 +989,19 @@ body {
   }
 
   .chart-card,
-  .stat-card,
   .bookings-card {
     padding: 15px;
   }
 
+ 
   .bookings-header {
     flex-direction: column;
     align-items: stretch;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    padding-bottom: 12px;
   }
 
   .bookings-filters {
@@ -954,33 +1016,26 @@ body {
   }
 
 
-  .bookings-card {
+  .bookings-table-wrapper {
     overflow-x: auto;
+    width: 100%;
   }
 
-  .bookings-table 
-  {
-    min-width: 1000px;
+  .bookings-table {
+    min-width: 1100px;
   }
 
-  .topbar h1 
-  {
+  .topbar h1 {
     font-size: 18px;
   }
 
   .section-title {
     font-size: 14px;
   }
-
-  .stat-value {
-    font-size: 22px;
-  }
 }
-@media (max-width: 480px) 
-{
+@media (max-width: 480px) {
 
-  .main-content 
-  {
+  .main-content {
     padding: 10px;
   }
 
@@ -989,15 +1044,31 @@ body {
     padding: 0 0 15px;
   }
 
-  .stat-card
-   {
-    flex-direction: column;
-    text-align: center;
+  .stat-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
   }
 
-  .stat-icon 
-  {
-    margin-bottom: 10px;
+  .stat-card {
+    padding: 8px;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .stat-icon {
+    margin-bottom: 5px;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .stat-value {
+    font-size: 15px;
+  }
+
+  .stat-label,
+  .stat-change {
+    font-size: 8px;
   }
 
   .chart-card {
