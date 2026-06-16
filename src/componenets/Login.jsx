@@ -10,13 +10,35 @@ function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = () => {
-    if (username === "admin" && password === "pass123") {
-      setError("");
-      navigate("/dashboard");
-    } else {
-      setError("Invalid username or password");
+  const handleLogin = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        navigate("/dashboard");
+      } else {
+        setError(data.message || "Invalid login");
+      }
+    } catch (err) {
+      setError("Server not responding");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -28,7 +50,11 @@ function Login() {
           <h1>Alonz</h1>
         </div>
 
-        <p className="subtitle">Welcome back! Please enter your details.</p>
+        <p className="subtitle">
+          Welcome back! Please enter your details.
+        </p>
+
+  
         <div className="input-group">
           <label>Admin/Username</label>
           <input
@@ -38,41 +64,51 @@ function Login() {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
+
+     
         <div className="input-group">
           <div className="label-row">
             <label>Password</label>
 
             <a
               onClick={() => navigate("/forget")}
-              style={{ cursor: "pointer", color: "blue" }}>
+              style={{ cursor: "pointer", color: "blue" }}
+            >
               Forgot Password?
             </a>
           </div>
 
-         <div className="password-wrapper">
-  <input
-    type={showPassword ? "text" : "password"}
-    placeholder="Enter password"
-    value={password}
-    onChange={(e) => setPassword(e.target.value)}
-  />
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-  <span
-    className="eye-icon"
-    onClick={() => setShowPassword(!showPassword)}
-  >
-    {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
-  </span>
-</div>
-
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </span>
+          </div>
         </div>
+
+      
         {error && (
           <p style={{ color: "red", marginTop: "10px" }}>
-            {error}</p>
+            {error}
+          </p>
         )}
 
-        <button className="login-btn" onClick={handleLogin}>
-          Login
+       
+        <button
+          className="login-btn"
+          onClick={handleLogin}
+          disabled={loading}
+        >
+          {loading ? "Logging in..." : "Login"}
         </button>
 
         <div className="footer">
