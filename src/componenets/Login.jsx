@@ -47,7 +47,7 @@ function Login() {
       <div className="login-card">
 
         <div className="logo">
-          <h1>Alonz</h1>
+          <h1>Alonzii</h1>
         </div>
 
         <p className="subtitle">
@@ -110,6 +110,14 @@ function Login() {
         >
           {loading ? "Logging in..." : "Login"}
         </button>
+        
+          <button
+    className="signup-btn"
+    onClick={() => navigate("/signup")}
+  >
+    Sign Up
+  </button>
+       
 
         <div className="footer">
           Powered by Alonzii Tech © 2026
