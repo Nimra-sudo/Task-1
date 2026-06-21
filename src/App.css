@@ -1110,7 +1110,7 @@ body {
   transition: all 0.25s ease;
 }
 
-.signup-btn:hover {
+c.signup-btn:hover {
   background: #f2f7ff;   
   color: #1f6fd1;        
   border-color: #1f6fd1;
@@ -1119,8 +1119,6 @@ body {
 button {
   outline: none;
 }
-
-
 
 
 
@@ -1133,7 +1131,6 @@ button {
   animation: fadeIn 0.4s ease;
   transition: all 0.3s ease;
 }
-
 
 .logo h1 {
   text-align: center;
@@ -1149,18 +1146,15 @@ button {
   margin-bottom: 12px;
 }
 
-
 .row {
   display: flex;
   gap: 10px;
 }
 
-
 .input-group {
   flex: 1;
   margin-bottom: 10px;
 }
-
 
 .input-group label {
   font-size: 12px;
@@ -1168,7 +1162,6 @@ button {
   margin-bottom: 4px;
   display: block;
 }
-
 
 .input-group input {
   width: 100%;
@@ -1179,7 +1172,6 @@ button {
   outline: none;
   transition: 0.25s ease;
 }
-
 
 .input-group input:focus {
   border-color: #000;
@@ -1195,7 +1187,6 @@ button {
   color: #444;
 }
 
-
 .login-btn {
   width: 100%;
   padding: 11px;
@@ -1209,12 +1200,10 @@ button {
   transition: 0.3s ease;
 }
 
-
 .login-btn:hover {
   background: #12833c;
   transform: translateY(-2px);
 }
-
 
 .input-error input {
   border: 1px solid red !important;
@@ -1245,7 +1234,6 @@ button {
   }
 }
 
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1256,6 +1244,7 @@ button {
     transform: translateY(0);
   }
 }
+
 .back-link {
   text-align: center;
   margin-top: 12px;
@@ -1268,4 +1257,74 @@ button {
 .back-link:hover {
   text-decoration: underline;
   color: #155bb5;
+}
+
+
+.login-btn:disabled {
+  background: #a7f3d0 !important;
+  cursor: not-allowed;
+  transform: none !important;
+  opacity: 0.8;
+}
+
+
+.login-btn {
+  transition: all 0.3s ease;
+}
+
+
+.input-group input:invalid {
+  border-color: #ddd;
+}
+
+.input-group input:focus:invalid {
+  border-color: #f87171;
+  box-shadow: 0 0 6px rgba(248, 113, 113, 0.3);
+}
+
+
+.login-btn:active {
+  transform: scale(0.98);
+}
+
+
+.checkbox-group input:disabled {
+  cursor: not-allowed;
+}
+
+
+.login-card {
+  transition: all 0.3s ease;
+}
+
+.login-btn:disabled {
+  background: #a7f3d0 !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none !important;
+}
+
+
+.error-text {
+  color: red;
+  font-size: 11px;
+  margin-top: 3px;
+}
+
+
+.input-group input:focus {
+  outline: none;
+}
+
+.input-group input {
+  border: 1px solid #ddd;
+}
+
+.input-group input:focus {
+  border-color: #000;
+}
+
+
+.login-card {
+  transition: all 0.3s ease;
 }

@@ -13,51 +13,79 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agree, setAgree] = useState(false);
 
+  const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
+ 
+  const validate = () => {
+    let tempErrors = {};
+
+    if (!firstName) tempErrors.firstName = "First name is required";
+    else if (firstName.length < 3) tempErrors.firstName = "Min 3 characters required";
+
+    if (!lastName) tempErrors.lastName = "Last name is required";
+
+    if (!email) tempErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(email)) tempErrors.email = "Invalid email format";
+
+    if (!userName) tempErrors.userName = "Username is required";
+    else if (userName.length < 4) tempErrors.userName = "Min 4 characters required";
+
+    if (!password) tempErrors.password = "Password is required";
+    else if (password.length < 6) tempErrors.password = "Min 6 characters required";
+    if (confirmPassword !== password)
+      tempErrors.confirmPassword = "Passwords do not match";
+
+    if (!agree) tempErrors.agree = "You must accept terms";
+
+    setErrors(tempErrors);
+
+    return Object.keys(tempErrors).length === 0;
+  };
+
+  
   const handleSignup = async () => {
-    if (!firstName || !lastName || !email || !password || !userName || !confirmPassword) {
-        alert("Please fill all fields");
-        return;
-    }
+    if (!validate()) return;
 
-    if (!agree) {
-        alert("Please accept terms & conditions");
-        return;
-    }
-
-    if (password !== confirmPassword) {
-        alert("Passwords do not match");
-        return;
-    }
+    setLoading(true);
 
     try {
-        const res = await fetch("https://nimra-backend.onrender.com/signup", {
+      const res = await fetch("https://nimra-backend.onrender.com/signup", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            firstName,
-            lastName,
-            email,
-            userName,
-            password,
+          firstName,
+          lastName,
+          email,
+          userName,
+          password,
         }),
-        });
+      });
 
-        const data = await res.json();
+      const data = await res.json();
 
-        if (data.success) {
+      if (data.success) {
         alert("Signup Successful");
         navigate("/login");
-        } else {
+      } else {
         alert(data.message);
-        }
-
+      }
     } catch (error) {
-        console.log(error);
-        alert("Server not responding");
+      alert("Server not responding");
     }
-    };
+
+    setLoading(false);
+  };
+
+  const isDisabled =
+    !firstName ||
+    !lastName ||
+    !email ||
+    !userName ||
+    !password ||
+    !confirmPassword ||
+    !agree ||
+    loading;
 
   return (
     <div className="container">
@@ -72,84 +100,62 @@ function Signup() {
         <div className="row">
           <div className="input-group">
             <label>First Name</label>
-            <input
-              type="text"
-              placeholder="Enter first name"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            />
+            <input value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+            {errors.firstName && <span className="error-text">{errors.firstName}</span>}
           </div>
 
           <div className="input-group">
             <label>Last Name</label>
-            <input
-              type="text"
-              placeholder="Enter last name"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
-            />
+            <input value={lastName} onChange={(e) => setLastName(e.target.value)} />
+            {errors.lastName && <span className="error-text">{errors.lastName}</span>}
           </div>
         </div>
 
         <div className="input-group">
           <label>Email</label>
-          <input
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+          <input value={email} onChange={(e) => setEmail(e.target.value)} />
+          {errors.email && <span className="error-text">{errors.email}</span>}
         </div>
+
+    
         <div className="input-group">
           <label>Username</label>
-          <input
-            type="text"
-            placeholder="Choose Username"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
+          <input value={userName} onChange={(e) => setUserName(e.target.value)} />
+          {errors.userName && <span className="error-text">{errors.userName}</span>}
         </div>
 
+       
         <div className="input-group">
           <label>Password</label>
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          {errors.password && <span className="error-text">{errors.password}</span>}
         </div>
 
+     
         <div className="input-group">
           <label>Confirm Password</label>
-          <input
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+          {errors.confirmPassword && <span className="error-text">{errors.confirmPassword}</span>}
         </div>
 
+       
         <div className="checkbox-group">
-          <input
-            type="checkbox"
-            checked={agree}
-            onChange={() => setAgree(!agree)}
-          />
+          <input type="checkbox" checked={agree} onChange={() => setAgree(!agree)} />
           <label>I agree with Terms & Conditions</label>
         </div>
+        {errors.agree && <span className="error-text">{errors.agree}</span>}
 
-        <button className="login-btn" onClick={handleSignup}>
-          Sign Up
+        <button
+          className="login-btn"
+          onClick={handleSignup}
+          disabled={isDisabled}
+        >
+          {loading ? "Signing Up..." : "Sign Up"}
         </button>
 
         <p className="back-link" onClick={() => navigate("/login")}>
           ← Back to Login
         </p>
-
-        <div className="footer">
-          Powered by Alonzii Tech © 2026
-        </div>
 
       </div>
     </div>
