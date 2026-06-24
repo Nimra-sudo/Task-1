@@ -3,20 +3,15 @@ import Header from "./Header";
 import "../App.css";
 
 import {
-  FaBusAlt,
-  FaMapMarkedAlt,
-  FaUsers,
-  FaDollarSign,
-} from "react-icons/fa";
+  HiOutlineTruck,
+HiOutlineMap,
+  HiOutlineCurrencyDollar,
+  HiOutlineUserGroup,
+} from "react-icons/hi2";
+import { FaBus } from "react-icons/fa";
 
 import {
-  LuSearch,
-  LuGrid2X2,
-  LuList,
-  LuPencil,
-  LuTrash2,
-  LuPlus,
-  LuClock3,
+  LuSearch,LuGrid2X2,  LuList,LuPencil,LuTrash2,LuPlus,LuClock3,
 } from "react-icons/lu";
 
 function Buses() {
@@ -50,7 +45,7 @@ function Buses() {
             </div>
 
             <div className="fleet-icon green">
-              <FaBusAlt />
+              <HiOutlineTruck />
             </div>
           </div>
 
@@ -61,7 +56,7 @@ function Buses() {
             </div>
 
             <div className="fleet-icon blue">
-              <FaMapMarkedAlt />
+              <HiOutlineMap />
             </div>
           </div>
 
@@ -72,7 +67,7 @@ function Buses() {
             </div>
 
             <div className="fleet-icon orange">
-              <FaUsers />
+              <HiOutlineUserGroup />
             </div>
           </div>
 
@@ -83,7 +78,7 @@ function Buses() {
             </div>
 
             <div className="fleet-icon red">
-              <FaDollarSign />
+              <HiOutlineCurrencyDollar />
             </div>
           </div>
         </div>
@@ -122,7 +117,7 @@ function Buses() {
             <div className="bus-card" key={index}>
               <div className="bus-top">
                 <div className="bus-icon">
-                  <FaBusAlt />
+                  <HiOutlineTruck />
                 </div>
 
                 <h4>{bus.code}</h4>

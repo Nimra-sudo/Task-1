@@ -9,6 +9,7 @@ import { IoIosNotifications } from "react-icons/io";
 import { TbWorld } from "react-icons/tb";
 import { BiSolidNavigation } from "react-icons/bi";
 import { CiSettings } from "react-icons/ci";
+import Sidebar from "./Sidebar";
 
 const statCards = [
   { icon: <FaBus />, iconClass: "blue",   value: 32,      label: "Total Buses",    change: "+4 this month",  changeType: "up"   },
@@ -62,15 +63,7 @@ const bookings =
           payment:"Mobile Money" },
 ];
 
-const navItems = [
-  { label: "Home",            icon: <AiTwotonePieChart/> },
-  { label: "Buses",           icon: <FaBus /> },
-  { label: "Bookings",        icon: <TbBrandBooking /> },
-  { label: "Manual Booking",  icon: <TbBrandBooking />},
-  { label: "Finance",         icon:  <IoWalletOutline />},
-  { label: "Role Management", icon: <FaUserGroup /> },
-  { label: "Settings",        icon: <CiSettings /> },
-];
+
 
 function BookingTrendChart()
  {
@@ -186,7 +179,7 @@ function StatusTag({ status }) {
 export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
-  const [activeNav, setActiveNav]     = useState("Home");
+
 
   const filteredBookings = bookings.filter((b) => {
     const matchesSearch = b.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -197,30 +190,7 @@ export default function Dashboard() {
 
   return (
     <div className="app-layout">
-      <aside className="sidebar">
-        <div className="sidebar-logo">
-          <span>A</span>lonzii</div>
-
-        <nav className="sidebar-nav">
-          {navItems.map((item) => (
-            <div
-              key={item.label}
-              className={`nav-item ${activeNav === item.label ? "active" : ""}`}
-              onClick={() => setActiveNav(item.label)}
-            >
-              <span className="nav-icon">{item.icon}</span>
-              {item.label}
-            </div>
-          ))}
-        </nav>
-
-        <div className="sidebar-footer">
-          <div className="logout-btn">
-            <span className="nav-icon"></span>
-            Logout
-          </div>
-        </div>
-      </aside>
+      <Sidebar />
       <main className="main-content">
 
         <div className="topbar">

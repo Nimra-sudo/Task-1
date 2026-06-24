@@ -7,6 +7,14 @@ import Recreate from "./componenets/Recreate";
 import Update from "./componenets/Update";
 import Dashboard from "./componenets/Dashboard";
 import Signup from "./componenets/Signup";
+import Bookings from "./componenets/Bookings";
+import Manual from "./componenets/Manual";
+import Finance from "./componenets/Finance";
+import RoleManagement from "./componenets/RoleManagement";
+import Buses from "./componenets/Buses";
+import AgencySettings from "./componenets/AgencySetting";
+
+
 
 function App() {
   return (
@@ -21,6 +29,13 @@ function App() {
       <Route path="/recreate" element={<Recreate />} />
       <Route path="/update" element={<Update />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/bookings" element={<Bookings />} />
+    
+     <Route path="/mannual-booking" element={<Manual />} />
+     <Route path="/finance" element={<Finance />} />
+     <Route path="/management" element={<RoleManagement />} />
+       <Route path="/bus" element={<Buses />} />
+              <Route path="/settings" element={<AgencySettings />} />
       
     </Routes>
   );
