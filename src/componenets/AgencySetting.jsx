@@ -41,7 +41,7 @@ function AgencySetting() {
         <div className="agency-cover-card">
           <div className="agency-cover">
             <img
-              src="../../public/images.jpg"
+              src="./images.jpg"
               alt="Cover"
               className="cover-image"
             />
