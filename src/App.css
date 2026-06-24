@@ -876,6 +876,7 @@ body {
    {
     grid-template-columns: 1fr;
   }
+  
 
   .section-header {
     flex-direction: column;
@@ -1361,8 +1362,9 @@ button {
 }
 
 .manual-card{
+  width: 100%;
+  max-width: 900px;
   margin-top:30px;
-  width:900px;
   background:#fff;
   border:1px solid #eee;
   border-radius:15px;
@@ -1502,6 +1504,97 @@ button {
   justify-content:center;
   margin-bottom:15px;
 }
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+  .manual-container{
+    padding:20px;
+  }
+  .manual-card {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+  }
+
+  .manual-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .manual-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .manual-topbar h1 {
+    font-size: 24px;
+  }
+
+  .manual-topbar p {
+    font-size: 13px;
+  }
+
+  .manual-topbar-right {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .round-trip-box {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .date-row {
+    flex-wrap: wrap;
+  }
+
+  .small-btn {
+    flex: 1;
+    min-width: 60px;
+  }
+
+  .search-bus-btn {
+    height: 48px;
+    font-size: 15px;
+  }
+
+  .manual-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .manual-card {
+    padding: 12px;
+  }
+
+  .manual-topbar h1 {
+    font-size: 20px;
+  }
+
+  .manual-field select,
+  .manual-field input,
+  .passenger-box {
+    height: 42px;
+  }
+
+  .search-bus-btn {
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
 
 
 
@@ -1731,7 +1824,7 @@ button {
 
 @media (max-width: 768px) {
   .finance-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .finance-top-row,
@@ -1872,7 +1965,7 @@ button {
 
 @media (max-width: 900px) {
   .role-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .role-header {
@@ -2115,7 +2208,7 @@ button {
   background: white;
   border-radius: 18px;
   border: 1px solid #ececec;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin-bottom: 20px;
 }
 
