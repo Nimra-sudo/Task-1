@@ -18,9 +18,9 @@ function Header({ title, subtitle }) {
           Online
         </div>
 
-        <button className="topbar-icon-btn">
+        <button className="topbar-icon-btn language-btn">
           <TbWorld />
-          EN
+              EN
         </button>
 
         <button className="topbar-icon-btn">

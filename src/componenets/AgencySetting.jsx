@@ -1,7 +1,6 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "../App.css";
-
 import { HiOutlineCamera } from "react-icons/hi2";
 import { LuCircleCheck } from "react-icons/lu";
 
@@ -16,14 +15,12 @@ function AgencySetting() {
           subtitle="Fleet operations overview — April 2026"
         />
 
-        {/* Alert */}
+        {/* ALERT */}
         <div className="agency-alert">
-          <div className="alert-text">
+          <div>
             <LuCircleCheck />
-            <span>
-              Changes Will Be Saved To Memory. Resetting Page Will Remove
-              Unsaved Changes.
-            </span>
+            Changes Will Be Saved To Memory. Resetting Page Restores Original
+            Defaults.
           </div>
 
           <div className="agency-buttons">
@@ -37,13 +34,12 @@ function AgencySetting() {
           </div>
         </div>
 
-        {/* Cover Card */}
+        {/* COVER CARD */}
         <div className="agency-cover-card">
           <div className="agency-cover">
             <img
-              src="./images.jpg"
-              alt="Cover"
-              className="cover-image"
+              src="/images.jpg"
+              alt="Agency Cover"
             />
 
             <button className="upload-btn">
@@ -54,23 +50,26 @@ function AgencySetting() {
 
           <div className="agency-profile">
             <div className="agency-logo">
-              A
+              Alonzii
             </div>
 
             <div className="agency-info">
-              <h3>ALONZII EXPRESS AGENCY</h3>
-              <p>
-                Fleet Operator Partner • Active Since April 2021
-              </p>
-            </div>
+              <div className="agency-title">
+                <h3>ALONZII EXPRESS AGENCY</h3>
 
-            <button className="edit-btn">
-              Edit Info
-            </button>
+                <p>
+                  Fleet Operator Partner • Active since April 2026
+                </p>
+              </div>
+
+              <button className="edit-btn">
+                Edit Info
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Form */}
+        {/* FORM */}
         <div className="agency-form-card">
           <h3>GENERAL INFORMATION</h3>
 
