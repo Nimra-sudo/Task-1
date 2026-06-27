@@ -1,188 +1,131 @@
-import Sidebar from "./Sidebar";
-import Header from "./Header";
 import "../App.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-import {
-  FaBusAlt,
-  FaMapMarkedAlt,
-  FaUsers,
-  FaDollarSign,
-} from "react-icons/fa";
+function Login() {
+  const navigate = useNavigate();
 
-import {
-  LuSearch,
-  LuGrid2X2,
-  LuList,
-  LuPencil,
-  LuTrash2,
-  LuPlus,
-  LuClock3,
-} from "react-icons/lu";
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-function Buses() {
-  const buses = Array(5).fill({
-    code: "LEC-9980",
-    name: "BUS NAME",
-    type: "AC Business Class • 30 Seats",
-    from: "DOUALA",
-    fromTerminal: "Terminal 1",
-    to: "YAOUNDÉ",
-    toTerminal: "Terminal 2",
-    price: "$2500",
-  });
+  const handleLogin = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch("https://nimra-backend.onrender.com/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        navigate("/dashboard");
+      } else {
+        setError(data.message || "Invalid login");
+      }
+    } catch (err) {
+      setError("Server not responding");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="app-layout">
-      <Sidebar />
+    <div className="container">
+      <div className="login-card">
 
-      <main className="main-content">
-        <Header
-          title="FLEET OVERVIEW"
-          subtitle="3 buses registered • 2 active"
-        />
+        <div className="logo">
+          <h1>Alonzii</h1>
+        </div>
 
-        {/* STAT CARDS */}
-        <div className="fleet-stats">
-          <div className="fleet-stat-card">
-            <div>
-              <p>Total Fleets</p>
-              <h3>32</h3>
-            </div>
+        <p className="subtitle">
+          Welcome back! Please enter your details.
+        </p>
 
-            <div className="fleet-icon green">
-              <FaBusAlt />
-            </div>
+  
+        <div className="input-group">
+          <label>Admin/Username</label>
+          <input
+            type="text"
+            placeholder="Enter username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+
+     
+        <div className="input-group">
+          <div className="label-row">
+            <label>Password</label>
+
+            <a
+              onClick={() => navigate("/forget")}
+              style={{ cursor: "pointer", color: "blue" }}
+            >
+              Forgot Password?
+            </a>
           </div>
 
-          <div className="fleet-stat-card">
-            <div>
-              <p>Active Trips</p>
-              <h3>156</h3>
-            </div>
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
-            <div className="fleet-icon blue">
-              <FaMapMarkedAlt />
-            </div>
-          </div>
-
-          <div className="fleet-stat-card">
-            <div>
-              <p>Bookings Today</p>
-              <h3>1,240</h3>
-            </div>
-
-            <div className="fleet-icon orange">
-              <FaUsers />
-            </div>
-          </div>
-
-          <div className="fleet-stat-card">
-            <div>
-              <p>Revenue</p>
-              <h3>$12.4K</h3>
-            </div>
-
-            <div className="fleet-icon red">
-              <FaDollarSign />
-            </div>
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </span>
           </div>
         </div>
 
-        {/* HEADER */}
-        <div className="fleet-header">
-          <h3>ACTIVE FLEET LIST</h3>
+      
+        {error && (
+          <p style={{ color: "red", marginTop: "10px" }}>
+            {error}
+          </p>
+        )}
 
-          <div className="fleet-actions">
-            <div className="finance-search-box">
-              <LuSearch />
-              <input
-                type="text"
-                placeholder="Enter user name"
-              />
-            </div>
+       
+        <button
+          className="login-btn"
+          onClick={handleLogin}
+          disabled={loading}
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
+        
+          <button
+    className="signup-btn"
+    onClick={() => navigate("/signup")}
+  >
+    Sign Up
+  </button>
+       
 
-            <button className="btn-success">
-              <LuPlus />
-              Add New Bus
-            </button>
-
-            <button className="view-btn active">
-              <LuGrid2X2 />
-            </button>
-
-            <button className="view-btn">
-              <LuList />
-            </button>
-          </div>
+        <div className="footer">
+          Powered by Alonzii Tech © 2026
         </div>
 
-        {/* BUS GRID */}
-        <div className="bus-grid">
-          {buses.map((bus, index) => (
-            <div className="bus-card" key={index}>
-              <div className="bus-top">
-                <div className="bus-icon">
-                  <FaBusAlt />
-                </div>
-
-                <h4>{bus.code}</h4>
-              </div>
-
-              <h3>{bus.name}</h3>
-              <p>{bus.type}</p>
-
-              <div className="route-box">
-                <div>
-                  <span className="route-city">
-                    🔵 {bus.from}
-                  </span>
-
-                  <small>{bus.fromTerminal}</small>
-                </div>
-
-                <span className="time">
-                  <LuClock3 />
-                  Arr: 16:00
-                </span>
-              </div>
-
-              <div className="route-box">
-                <div>
-                  <span className="route-city">
-                    🟠 {bus.to}
-                  </span>
-
-                  <small>{bus.toTerminal}</small>
-                </div>
-
-                <span className="time">
-                  <LuClock3 />
-                  Arr: 16:00
-                </span>
-              </div>
-
-              <div className="bus-footer">
-                <div>
-                  <small>Avg Price</small>
-                  <h5>{bus.price}</h5>
-                </div>
-
-                <div className="bus-actions">
-                  <button>
-                    <LuPencil />
-                  </button>
-
-                  <button>
-                    <LuTrash2 />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
+      </div>
     </div>
   );
 }
 
-export default Buses;
+export default Login;

@@ -9,6 +9,7 @@ import { TbBrandBooking } from "react-icons/tb";
 import { FaUserGroup } from "react-icons/fa6";
 import { IoWalletOutline } from "react-icons/io5";
 import { CiSettings } from "react-icons/ci";
+import { LuLogOut } from "react-icons/lu";
 
 function Sidebar() {
   const [activeNav, setActiveNav] = useState("Home");
@@ -46,6 +47,7 @@ function Sidebar() {
 
       <div className="sidebar-footer">
         <div className="logout-btn">
+          <span className="nav-icon"><LuLogOut /></span>
           Logout
         </div>
       </div>

@@ -82,15 +82,17 @@ function RoleManagement() {
                   placeholder="Search by name, role, email"
                 />
               </div>
+              
+              <div class="role-bt">
+                <button className="btn-dark">
+                  Manage Roles
+                </button>
 
-              <button className="btn-dark">
-                Manage Roles
-              </button>
-
-              <button className="btn-success">
-                <LuUserPlus />
-                Add Agent
-              </button>
+                <button className="btn-success">
+                  <LuUserPlus />
+                  Add Agent
+                </button>
+              </div>
             </div>
           </div>
 

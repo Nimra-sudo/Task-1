@@ -15,7 +15,7 @@ function AgencySetting() {
           subtitle="Fleet operations overview — April 2026"
         />
 
-        {/* ALERT */}
+     
         <div className="agency-alert">
           <div>
             <LuCircleCheck />
@@ -34,11 +34,11 @@ function AgencySetting() {
           </div>
         </div>
 
-        {/* COVER CARD */}
+       
         <div className="agency-cover-card">
           <div className="agency-cover">
             <img
-              src="/images.jpg"
+              src="./images.jpg"
               alt="Agency Cover"
             />
 
