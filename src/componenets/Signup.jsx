@@ -86,6 +86,7 @@ function Signup() {
     !confirmPassword ||
     !agree ||
     loading;
+  
 
   return (
     <div className="container">

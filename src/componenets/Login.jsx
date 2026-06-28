@@ -1,5 +1,5 @@
 import "../App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
@@ -17,23 +17,28 @@ function Login() {
     setError("");
 
     try {
-      const response = await fetch("https://nimra-backend.onrender.com/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
-      });
+      const response = await fetch(
+        // "https://nimra-backend.onrender.com/login",
+        "https://nimra-backend.onrender.com/login",
+        {
+          method: "POST",
+          credentials: "include", // IMPORTANT
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            password,
+          }),
+        }
+      );
 
       const data = await response.json();
 
       if (data.success) {
         navigate("/dashboard");
       } else {
-        setError(data.message || "Invalid login");
+        setError(data.message);
       }
     } catch (err) {
       setError("Server not responding");
@@ -42,6 +47,19 @@ function Login() {
     }
   };
 
+  useEffect(() => {
+  fetch("https://nimra-backend.onrender.com/dashboard", {
+    credentials: "include",
+  })
+    .then((res) => {
+      if (res.ok) {
+        navigate("/dashboard");
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}, [navigate]);
   return (
     <div className="container">
       <div className="login-card">

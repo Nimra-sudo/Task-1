@@ -1,6 +1,9 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "../App.css";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 import {
   HiOutlineUserGroup,
@@ -23,7 +26,30 @@ function RoleManagement() {
     permissions: "+2 Permissions",
     status: "Active",
   });
-
+ const navigate = useNavigate();
+    
+      useEffect(() => {
+        fetch("https://nimra-backend.onrender.com/dashboard", {
+          credentials: "include",
+        })
+          .then((res) => {
+            if (res.status === 401) {
+              navigate("/login");
+              return;
+            }
+    
+            return res.json();
+          })
+          .then((data) => {
+            if (data && !data.success) {
+              navigate("/login");
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }, [navigate]);
+ 
   return (
     <div className="app-layout">
       <Sidebar />

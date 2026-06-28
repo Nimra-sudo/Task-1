@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 import { AiTwotonePieChart } from "react-icons/ai";
 import { FaBus } from "react-icons/fa6";
@@ -179,7 +180,29 @@ function StatusTag({ status }) {
 export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    fetch("https://nimra-backend.onrender.com/dashboard", {
+      credentials: "include",
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          navigate("/login");
+          return;
+        }
+
+        return res.json();
+      })
+      .then((data) => {
+        if (data && !data.success) {
+          navigate("/login");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [navigate]);
 
   const filteredBookings = bookings.filter((b) => {
     const matchesSearch = b.id.toLowerCase().includes(searchQuery.toLowerCase()) ||

@@ -3,8 +3,34 @@ import Header from "./Header";
 import "../App.css";
 import { HiOutlineCamera } from "react-icons/hi2";
 import { LuCircleCheck } from "react-icons/lu";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AgencySetting() {
+  
+    const navigate = useNavigate();
+      
+        useEffect(() => {
+          fetch("https://nimra-backend.onrender.com/dashboard", {
+            credentials: "include",
+          })
+            .then((res) => {
+              if (res.status === 401) {
+                navigate("/login");
+                return;
+              }
+      
+              return res.json();
+            })
+            .then((data) => {
+              if (data && !data.success) {
+                navigate("/login");
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }, [navigate]);
   return (
     <div className="app-layout">
       <Sidebar />

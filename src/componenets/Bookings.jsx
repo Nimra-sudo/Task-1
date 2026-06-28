@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
@@ -56,6 +57,31 @@ function Bookings() {
       item.id.toLowerCase().includes(search.toLowerCase()) ||
       item.passenger.toLowerCase().includes(search.toLowerCase())
   );
+
+  const navigate = useNavigate();
+    
+      useEffect(() => {
+        fetch("https://nimra-backend.onrender.com/dashboard", {
+          credentials: "include",
+        })
+          .then((res) => {
+            if (res.status === 401) {
+              navigate("/login");
+              return;
+            }
+    
+            return res.json();
+          })
+          .then((data) => {
+            if (data && !data.success) {
+              navigate("/login");
+            }
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      }, [navigate]);
+    
 
   return (
     <div className="app-layout">

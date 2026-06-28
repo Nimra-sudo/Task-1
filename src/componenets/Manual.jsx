@@ -1,10 +1,38 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "../App.css";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 import { IoSearchOutline } from "react-icons/io5";
 
 function Manual() {
+
+   const navigate = useNavigate();
+      
+        useEffect(() => {
+          fetch("https://nimra-backend.onrender.com/dashboard", {
+            credentials: "include",
+          })
+            .then((res) => {
+              if (res.status === 401) {
+                navigate("/login");
+                return;
+              }
+      
+              return res.json();
+            })
+            .then((data) => {
+              if (data && !data.success) {
+                navigate("/login");
+              }
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        }, [navigate]);
+   
   return (
     <div className="app-layout">
       <Sidebar />

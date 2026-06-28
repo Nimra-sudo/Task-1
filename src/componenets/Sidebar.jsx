@@ -1,8 +1,6 @@
-// Sidebar.jsx
 
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-
+import { NavLink, useNavigate } from "react-router-dom";
 import { AiTwotonePieChart } from "react-icons/ai";
 import { FaBus } from "react-icons/fa6";
 import { TbBrandBooking } from "react-icons/tb";
@@ -11,8 +9,29 @@ import { IoWalletOutline } from "react-icons/io5";
 import { CiSettings } from "react-icons/ci";
 import { LuLogOut } from "react-icons/lu";
 
+
+
 function Sidebar() {
   const [activeNav, setActiveNav] = useState("Home");
+  const navigate = useNavigate();
+
+  const logout = async () => {
+    try {
+      const res = await fetch("https://nimra-backend.onrender.com/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      const data = await res.json();
+      console.log(data);
+
+      if (data.success) {
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const navItems = [
     { label: "Home", path: "/dashboard", icon: <AiTwotonePieChart /> },
@@ -46,7 +65,7 @@ function Sidebar() {
       </nav>
 
       <div className="sidebar-footer">
-        <div className="logout-btn">
+        <div className="logout-btn" onClick={logout}>
           <span className="nav-icon"><LuLogOut /></span>
           Logout
         </div>
