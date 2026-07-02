@@ -4,41 +4,7 @@ import "../App.css";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 
-const bookings = [
-  {
-    id: "BK-1001",
-    passenger: "John Doe",
-    bus: "Volvo V72 v8",
-    route: "Douala → Yaoundé",
-    date: "Apr 10, 2026",
-    seats: "S11 / S12",
-    amount: "5,000",
-    status: "confirmed",
-    payment: "Mobile Money",
-  },
-  {
-    id: "BK-1002",
-    passenger: "John Doe",
-    bus: "Volvo V72 v8",
-    route: "Douala → Yaoundé",
-    date: "Apr 11, 2026",
-    seats: "S21 / S22",
-    amount: "5,000",
-    status: "pending",
-    payment: "Mobile Money",
-  },
-  {
-    id: "BK-1003",
-    passenger: "John Doe",
-    bus: "Volvo V72 v8",
-    route: "Douala → Yaoundé",
-    date: "Apr 12, 2026",
-    seats: "S31 / S32",
-    amount: "5,000",
-    status: "cancelled",
-    payment: "Card",
-  },
-];
+
 
 function StatusTag({ status }) {
   return (
@@ -49,17 +15,43 @@ function StatusTag({ status }) {
   );
 }
 
+
+
 function Bookings() {
+  const [bookings, setBookings] = useState([]);
   const [search, setSearch] = useState("");
 
   const filteredBookings = bookings.filter(
     (item) =>
-      item.id.toLowerCase().includes(search.toLowerCase()) ||
-      item.passenger.toLowerCase().includes(search.toLowerCase())
+      item.booking_code
+        ?.toLowerCase()
+        .includes(search.toLowerCase()) ||
+      item.passenger_name
+        ?.toLowerCase()
+        .includes(search.toLowerCase())
   );
 
   const navigate = useNavigate();
-    
+      
+    useEffect(() => {
+      fetch("https://nimra-backend.onrender.com/bookings", {
+        credentials: "include",
+      })
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`HTTP Error: ${res.status}`);
+          }
+          return res.json();
+        })
+        .then((data) => {
+          if (data.success) {
+            setBookings(data.bookings);
+          }
+        })
+        .catch((err) => console.log(err));
+    }, []);
+
+
       useEffect(() => {
         fetch("https://nimra-backend.onrender.com/dashboard", {
           credentials: "include",
@@ -146,18 +138,20 @@ function Bookings() {
               <tbody>
                 {filteredBookings.map((booking) => (
                   <tr key={booking.id}>
-                    <td>{booking.id}</td>
-                    <td>{booking.passenger}</td>
-                    <td>{booking.bus}</td>
+                    <td>{booking.booking_code}</td>
+
+                    <td>{booking.passenger_name}</td>
+
+                    <td>{booking.bus_name}</td>
 
                     <td>
                       <div>{booking.route}</div>
                       <div className="route-info">
-                        {booking.date}
+                        {booking.travel_date}
                       </div>
                     </td>
 
-                    <td>{booking.seats}</td>
+                    <td>{booking.seat_numbers}</td>
 
                     <td className="amount-value">
                       FCFA {booking.amount}
@@ -167,7 +161,7 @@ function Bookings() {
                       <StatusTag status={booking.status} />
                     </td>
 
-                    <td>{booking.payment}</td>
+                    <td>{booking.payment_method}</td>
 
                     <td>
                       <button className="action-btn">

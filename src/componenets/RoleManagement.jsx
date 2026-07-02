@@ -1,8 +1,8 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "../App.css";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 
 import {
@@ -18,14 +18,15 @@ import {
 } from "react-icons/lu";
 
 function RoleManagement() {
-  const agents = Array(7).fill({
-    name: "Emmanuel Abbo",
-    phone: "+237 123 123 123",
-    email: "emmanuelabbo23@gmail.com",
-    role: "Booker",
-    permissions: "+2 Permissions",
-    status: "Active",
-  });
+  const [agents, setAgents] = useState([]);
+  // const agents = Array(7).fill({
+  //   name: "Emmanuel Abbo",
+  //   phone: "+237 123 123 123",
+  //   email: "emmanuelabbo23@gmail.com",
+  //   role: "Booker",
+  //   permissions: "+2 Permissions",
+  //   status: "Active",
+  // });
  const navigate = useNavigate();
     
       useEffect(() => {
@@ -50,13 +51,26 @@ function RoleManagement() {
           });
       }, [navigate]);
  
+      useEffect(() => {
+        fetch("https://nimra-backend.onrender.com/agents", {
+          credentials: "include",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.success) {
+              setAgents(data.agents);
+            }
+          })
+          .catch((err) => console.log(err));
+      }, []);
+
   return (
     <div className="app-layout">
       <Sidebar />
 
       <main className="main-content">
         <Header
-          title="USER MANAGEMENT"
+          title="AGENTS MANAGEMENT"
           subtitle="Manage roles and account details for your team"
         />
 
@@ -135,7 +149,53 @@ function RoleManagement() {
                 </tr>
               </thead>
 
-              <tbody>
+<tbody>
+  {agents.map((item) => (
+    <tr key={item.id}>
+      <td>{item.full_name}</td>
+
+      <td>{item.phone}</td>
+
+      <td>{item.email}</td>
+
+      <td>
+        <span className="role-badge">
+          {item.role}
+        </span>
+
+        <span className="permission-text">
+          {item.permissions}
+        </span>
+      </td>
+
+      <td>
+        <span
+          className={
+            item.status === "Active"
+              ? "status-active"
+              : "status-inactive"
+          }
+        >
+          {item.status}
+          <LuChevronDown />
+        </span>
+      </td>
+
+      <td>
+        <div className="action-icons">
+          <button>
+            <LuPencil />
+          </button>
+
+          <button>
+            <LuTrash2 />
+          </button>
+        </div>
+      </td>
+    </tr>
+  ))}
+</tbody>
+              {/* <tbody>
                 {agents.map((item, index) => (
                   <tr key={index}>
                     <td>{item.name}</td>
@@ -174,7 +234,7 @@ function RoleManagement() {
                     </td>
                   </tr>
                 ))}
-              </tbody>
+              </tbody> */}
             </table>
           </div>
         </div>

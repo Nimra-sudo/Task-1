@@ -1,7 +1,7 @@
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "../App.css";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -17,19 +17,43 @@ import {
 } from "react-icons/lu";
 
 function Buses() {
-  const buses = Array(5).fill({
-    code: "LEC-9980",
-    name: "BUS NAME",
-    type: "AC Business Class • 30 Seats",
-    from: "DOUALA",
-    fromTerminal: "Terminal 1",
-    to: "YAOUNDÉ",
-    toTerminal: "Terminal 2",
-    price: "$2500",
+  const [summary, setSummary] = useState({
+    totalFleets: 0,
+    activeTrips: 0,
+    bookingsToday: 0,
+    revenue: 0,
   });
+  const [buses, setBuses] = useState([]);
 
   const navigate = useNavigate();
-  
+
+    useEffect(() => {
+      fetch("https://nimra-backend.onrender.com/bus-summary", {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            setSummary(data.summary);
+          }
+        })
+        .catch((err) => console.log(err));
+      }, []);
+    useEffect(() => {
+      fetch("https://nimra-backend.onrender.com/buses", {
+        credentials: "include",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.success) {
+            setBuses(data.buses);
+          }
+        })
+        .catch((err) => console.log(err));
+    }, []);
+
+
+
     useEffect(() => {
       fetch("https://nimra-backend.onrender.com/dashboard", {
         credentials: "include",
@@ -60,7 +84,7 @@ function Buses() {
       <main className="main-content">
         <Header
           title="FLEET OVERVIEW"
-          subtitle="3 buses registered • 2 active"
+          subtitle={`${summary.totalFleets} buses registered • ${summary.activeTrips} active`}
         />
 
         {/* STAT CARDS */}
@@ -68,7 +92,7 @@ function Buses() {
           <div className="fleet-stat-card">
             <div>
               <p>Total Fleets</p>
-              <h3>32</h3>
+              <h3>{summary.totalFleets}</h3>
             </div>
 
             <div className="fleet-icon green">
@@ -79,7 +103,7 @@ function Buses() {
           <div className="fleet-stat-card">
             <div>
               <p>Active Trips</p>
-              <h3>156</h3>
+              <h3>{summary.activeTrips}</h3>
             </div>
 
             <div className="fleet-icon blue">
@@ -90,7 +114,7 @@ function Buses() {
           <div className="fleet-stat-card">
             <div>
               <p>Bookings Today</p>
-              <h3>1,240</h3>
+              <h3>{summary.bookingsToday}</h3>
             </div>
 
             <div className="fleet-icon orange">
@@ -101,7 +125,7 @@ function Buses() {
           <div className="fleet-stat-card">
             <div>
               <p>Revenue</p>
-              <h3>$12.4K</h3>
+              <h3>FCFA {summary.revenue.toLocaleString()}</h3>
             </div>
 
             <div className="fleet-icon red">
@@ -140,53 +164,56 @@ function Buses() {
 
         {/* BUS GRID */}
         <div className="bus-grid">
-          {buses.map((bus, index) => (
-            <div className="bus-card" key={index}>
+          {buses.map((bus) => (
+            <div className="bus-card" key={bus.id}>
               <div className="bus-top">
                 <div className="bus-icon">
                   <HiOutlineTruck />
                 </div>
 
-                <h4>{bus.code}</h4>
+                <h4>{bus.bus_code}</h4>
               </div>
 
-              <h3>{bus.name}</h3>
-              <p>{bus.type}</p>
+              <h3>{bus.bus_name}</h3>
+
+              <p>
+                {bus.bus_type} • {bus.total_seats} Seats
+              </p>
 
               <div className="route-box">
                 <div>
                   <span className="route-city">
-                    🔵 {bus.from}
+                     {bus.from_city}
                   </span>
 
-                  <small>{bus.fromTerminal}</small>
+                  <small>{bus.from_terminal}</small>
                 </div>
 
                 <span className="time">
                   <LuClock3 />
-                  Arr: 16:00
+                  Arr: {bus.arrival_time?.slice(0, 5)}
                 </span>
               </div>
 
               <div className="route-box">
                 <div>
                   <span className="route-city">
-                    🟠 {bus.to}
+                     {bus.to_city}
                   </span>
 
-                  <small>{bus.toTerminal}</small>
+                  <small>{bus.to_terminal}</small>
                 </div>
 
                 <span className="time">
                   <LuClock3 />
-                  Arr: 16:00
+                  Arr: {bus.arrival_time?.slice(0, 5)}
                 </span>
               </div>
 
               <div className="bus-footer">
                 <div>
                   <small>Avg Price</small>
-                  <h5>{bus.price}</h5>
+                  <h5>FCFA {bus.average_price}</h5>
                 </div>
 
                 <div className="bus-actions">

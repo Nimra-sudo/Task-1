@@ -19,18 +19,16 @@ import {
 } from "react-icons/lu";
 
 function Finance() {
-  const transactions = Array(8).fill({
-    date: "Apr 10, 2026",
-    time: "09:30 AM",
-    bookingId: "BK-1001",
-    customer: "John Doe",
-    transactionId: "REF: ALZ-24-1001-TX",
-    route: "Douala → Yaounde",
-    amount: "FCFA 5,000",
-    cashier: "Cashier Name 1",
-    status: "Confirmed",
-    payment: "Mobile Money",
+  const [transactions, setTransactions] = useState([]);
+  const [summary, setSummary] = useState({
+    totalRevenue: 0,
+    bankTransfers: 0,
+    cashPayments: 0,
+    mobileMoney: 0,
   });
+
+  const [search, setSearch] = useState("");
+  const [method, setMethod] = useState("All Methods");
 const navigate = useNavigate();
   
     useEffect(() => {
@@ -55,7 +53,59 @@ const navigate = useNavigate();
         });
     }, [navigate]);
   
+useEffect(() => {
+  const getSummary = () => {
+    fetch("https://nimra-backend.onrender.com/finance-summary", {
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setSummary(data.summary);
+        }
+      });
+  };
 
+  getSummary();
+
+  const interval = setInterval(getSummary, 5000);
+
+  return () => clearInterval(interval);
+}, []);
+
+useEffect(() => {
+  fetch("https://nimra-backend.onrender.com/finance", {
+    credentials: "include",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        setTransactions(data.transactions);
+      }
+    })
+    .catch((err) => console.log(err));
+}, []);
+
+const filteredTransactions = transactions.filter(
+  (item) => {
+    const matchSearch =
+      item.transaction_id
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      item.customer_name
+        .toLowerCase()
+        .includes(search.toLowerCase()) ||
+      item.booking_id
+        .toLowerCase()
+        .includes(search.toLowerCase());
+
+    const matchMethod =
+      method === "All Methods" ||
+      item.payment_method === method;
+
+    return matchSearch && matchMethod;
+  }
+);
 
   return (
     <div className="app-layout">
@@ -99,7 +149,9 @@ const navigate = useNavigate();
 
             <div>
               <p>Total Revenue</p>
-              <h3>24.8K</h3>
+              <h3>
+              FCFA {summary.totalRevenue.toLocaleString()}
+            </h3>
             </div>
           </div>
 
@@ -110,7 +162,9 @@ const navigate = useNavigate();
 
             <div>
               <p>Online Transfers</p>
-              <h3>15.2K</h3>
+              <h3>
+              FCFA {summary.bankTransfers.toLocaleString()}
+            </h3>
             </div>
           </div>
 
@@ -121,7 +175,9 @@ const navigate = useNavigate();
 
             <div>
               <p>Cash Payments</p>
-              <h3>9.6K</h3>
+              <h3>
+                FCFA {summary.cashPayments.toLocaleString()}
+              </h3>
             </div>
           </div>
 
@@ -132,7 +188,9 @@ const navigate = useNavigate();
 
             <div>
               <p>Mobile Money</p>
-              <h3>7.3K</h3>
+              <h3>
+                FCFA {summary.mobileMoney.toLocaleString()}
+              </h3>
             </div>
           </div>
         </div>
@@ -151,10 +209,16 @@ const navigate = useNavigate();
                 <input
                   type="text"
                   placeholder="Search by Transaction Id"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
 
-              <select className="filter-select">
+              <select
+                    className="filter-select"
+                    value={method}
+                    onChange={(e) => setMethod(e.target.value)}
+                  >
                 <option>All Methods</option>
                 <option>Cash</option>
                 <option>Bank</option>
@@ -184,8 +248,50 @@ const navigate = useNavigate();
                   <th>Action</th>
                 </tr>
               </thead>
+<tbody>
+  {filteredTransactions.map((item) => (
+    <tr key={item.id}>
+      <td>
+        {new Date(item.transaction_date).toLocaleDateString()}
+        <br />
+        <small>{item.transaction_time}</small>
+      </td>
 
-              <tbody>
+      <td>{item.booking_id}</td>
+
+      <td>{item.customer_name}</td>
+
+      <td>{item.transaction_id}</td>
+
+      <td>{item.route}</td>
+
+      <td className="amount-text">
+        FCFA {item.amount}
+      </td>
+
+      <td>{item.cashier_name}</td>
+
+      <td>
+        <span
+          className={
+            item.status === "Confirmed"
+              ? "status-confirmed"
+              : "status-pending"
+          }
+        >
+          {item.status}
+        </span>
+      </td>
+
+      <td>{item.payment_method}</td>
+
+      <td className="action-cell">
+        <LuEllipsisVertical />
+      </td>
+    </tr>
+  ))}
+</tbody>
+              {/* <tbody>
                 {transactions.map((item, index) => (
                   <tr key={index}>
                     <td>
@@ -218,7 +324,7 @@ const navigate = useNavigate();
                     </td>
                   </tr>
                 ))}
-              </tbody>
+              </tbody> */}
             </table>
           </div>
         </div>
