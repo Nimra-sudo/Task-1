@@ -13,50 +13,6 @@ import { CiSettings } from "react-icons/ci";
 import Sidebar from "./Sidebar";
 
 
-// const bookings = 
-// [
-//   { id:"BK-1001", passenger:"John Doe",   
-//       passId:"AD-1234", bus:"Bus Name",
-//        busId:"AD-1134", route:"To: Okearia → Yaramki",
-//         date:"Oct 8, 2026",  seats:"W11, W12 / W41, B42",
-//          amount:"₦24,500", fee:"₦5,000", status:"confirmed",
-//           payment:"Mobile Money" },
-//   { id:"BK-1002", passenger:"Jane Smith",  
-//      passId:"AD-2201", bus:"Bus Name", busId:"AD-1135", route:"To: Okearia → Yaramki", date:"Oct 8, 2026",  seats:"W11, W12 / W41, B42", amount:"₦18,000", fee:"₦3,000", status:"pending",   payment:"Mobile Money" },
-//   { id:"BK-1003", 
-//     passenger:"Mike Johnson", passId:"AD-3312", 
-//     bus:"Bus Name", busId:"AD-1136", route:"To: Okearia → Yaramki", date:"Oct 9, 2026",  seats:"W11, W12 / W21, W22", amount:"₦22,000", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
-//   { id:"BK-1004",
-//      passenger:"Sarah Brown",  passId:"AD-4423",
-//       bus:"Bus Name", busId:"AD-1137", route:"To: Okearia → Yaramki", date:"Oct 9, 2026",  seats:"W11, W12 / B41, B42", amount:"₦16,500", fee:"₦3,000", status:"cancelled", payment:"Card"         },
-//   { id:"BK-1005",
-//     passenger:"Chris Evans",  passId:"AD-5534",
-//      bus:"Bus Name", busId:"AD-1138", route:"To: Okearia → Yaramki", date:"Oct 10, 2026", seats:"W21, W22 / B41, B42", amount:"₦28,000", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
-//   { id:"BK-1006",
-//      passenger:"Emily Clark",  passId:"AD-6645",
-//       bus:"Bus Name", busId:"AD-1139", route:"To: Okearia → Yaramki",
-//        date:"Oct 10, 2026", seats:"W11, W12 / W41, B42", amount:"₦21,000", fee:"₦5,000", status:"confirmed", payment:"Mobile Money" },
-//   { id:"BK-1007",
-//      passenger:"Ryan Doe",     passId:"AD-7756",
-//       bus:"Bus Name", busId:"AD-1140", route:"To: Okearia → Yaramki",
-//        date:"Oct 11, 2026", seats:"B11, B12 / B41, B42",
-//         amount:"₦19,500", fee:"₦5,000",
-//          status:"confirmed",
-//          payment:"Mobile Money" },
-//   { id:"BK-1008",
-//      passenger:"Linda White",  passId:"AD-8867",
-//       bus:"Bus Name", busId:"AD-1141",
-//        route:"To: Okearia → Yaramki",
-//        date:"Oct 11, 2026", 
-//        seats:"W11, W12 / W41, B42",
-//         amount:"₦24,000", 
-//         fee:"₦5,000", 
-//         status:"pending", 
-//           payment:"Mobile Money" },
-// ];
-
-
-
 function BookingTrendChart({ trendData }) {
   const width = 340;
   const height = 120;
